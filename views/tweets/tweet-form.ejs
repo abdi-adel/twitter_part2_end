@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Tweet form</title>
+</head>
+<body>
+    <%- include('../includes/topbar', {user : 'user1'}); %>
+    <div class="d-flex flex-row content mx-auto">
+        <div class="profile-container">
+            <%- include('../includes/profile', {user : 'user1'}); %>
+        </div>
+        <div class="flex-fill">
+            <form class="card" method="post" action="/api/tweets">
+                <div class="card-header"> Ecrire un tweet </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <textarea class="form-control" name="content" placeholder="What is happening"></textarea>
+                    </div>
+                    <% if(errors){ %>
+                        <ul class="my-2">
+                            <% errors.forEach(function(error) { %> 
+                            <li class="text-danger">
+                                <%= error %>
+                            </li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+                </div>
+                <div class="w-100">
+                    <input type="submit" value="Send" class="btn btn-primary ms-auto d-block">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
